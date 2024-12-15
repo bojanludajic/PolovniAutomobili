@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.UserDTO;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
 
@@ -36,8 +37,7 @@ public class UserService {
 		Role r = rr.findById(2).get();
 		u.setRole(r);
 		u.setPassword(passwordEncoder.encode(u.getPassword()));
-		System.out.println(r.getName());
 		ur.save(u);
 	}
-	
+		
 }

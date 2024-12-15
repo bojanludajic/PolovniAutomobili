@@ -1,0 +1,42 @@
+body {
+    background-color: #f4d500;;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar {
+    background-color: gray;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.top-bar a:hover {
+    background-color: darkgray;
+}
+
+h1 {
+    text-align: center;
+    color: darkgray;
+    font-size: 24px;
+    margin-top: 50px;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: darkgray;
+    margin-top: 20px;
+}
+
