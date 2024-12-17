@@ -23,15 +23,15 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
 				.authorizeHttpRequests(requests -> requests
-						.requestMatchers("/login.jsp", "/register.jsp", "/user/**", "/index.jsp", "/styles/**").permitAll()
-						//.requestMatchers("/index.jsp").hasAnyRole("Admin", "Guest", "User")
+						.requestMatchers("/login.jsp", "/register.jsp", "/home.jsp", "/styles/**", "/*", "/listing/**").permitAll()
+						.requestMatchers("/user/**").hasAnyRole("Admin", "User")
 						.anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/index.jsp").permitAll()
+				.formLogin(form -> form.loginPage("/login.jsp").permitAll()
 						.loginProcessingUrl("/login")
 						.defaultSuccessUrl("/user/home", true)
 						.failureUrl("/login.jsp?error=true"))
 				.logout(logout -> logout
-						.logoutSuccessUrl("/index.jsp"))
+						.logoutSuccessUrl("/home.jsp"))
 				.csrf(csrf -> csrf.disable())
 				.build();
 	}

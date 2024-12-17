@@ -11,7 +11,7 @@
 <body>
 
 	<div class="top-bar">
-		<a href="${pageContext.request.contextPath}/index.jsp">Pocetna</a>
+		<a href="${pageContext.request.contextPath}/">Pocetna</a>
 	</div>
 
 	<form action="/Polovni/user/saveUser" method="post"

@@ -1,0 +1,107 @@
+body {
+    background-color: #ffcc00;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar {
+    background-color: gray;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.top-bar a:hover {
+    background-color: darkgray;
+}
+
+.container {
+    width: 90%;
+    margin: 30px auto;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+}
+
+.listing-container {
+    margin: 20px auto;
+    width: 80%;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.listing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+}
+
+.listing-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 85%;
+}
+
+.listing img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.listing-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.listing-details h2 {
+    color: black;
+    margin: 0 0 10px;
+}
+
+.listing-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.trash-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.trash-link {
+    color: black;
+    text-decoration: none;
+}
+
+.trash-icon:hover .trash-link {
+    color: red;
+}

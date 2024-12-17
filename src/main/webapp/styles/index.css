@@ -1,5 +1,5 @@
 body {
-    background-color: #f4d500;;
+    background-color: #ffcc00;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -28,15 +28,41 @@ body {
 
 h1 {
     text-align: center;
-    color: darkgray;
+    color: black;
     font-size: 24px;
     margin-top: 50px;
 }
 
-p {
-    text-align: center;
-    font-size: 18px;
-    color: darkgray;
-    margin-top: 20px;
+.car-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid columns */
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
 }
 
+.car {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+}
+
+.car-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.car h2 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.car p {
+    font-size: 16px;
+    color: #888;
+}

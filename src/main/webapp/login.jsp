@@ -11,11 +11,11 @@
 <body>
 
 	<div class="top-bar">
-		<a href="${pageContext.request.contextPath}/index.jsp">Pocetna</a>
+		<a href="${pageContext.request.contextPath}/">Pocetna</a>
 	</div>
 
 	<div class="login-container">
-		<h1>Ulogujte se</h1>
+		<h1>Prijava</h1>
 		<form method="post" action="${pageContext.request.contextPath}/login">
 			<label for="username">Korisnicko ime:</label> <input type="text"
 				id="username" name="username" required> <br> <label
