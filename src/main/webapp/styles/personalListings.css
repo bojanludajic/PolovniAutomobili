@@ -70,7 +70,7 @@ h1 {
 
 .listing-details {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     flex: 1;
 }
@@ -82,7 +82,7 @@ h1 {
 
 .listing-details p {
     margin: 5px 0;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .trash-icon {

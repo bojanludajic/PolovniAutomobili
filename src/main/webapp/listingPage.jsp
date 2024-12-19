@@ -6,22 +6,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Polovni ${listing.make } ${listing.model }</title>
-	<link rel="stylesheet" type="text/css" href="<c:url value='/styles/listing.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/styles/listing.css'/>">
 </head>
 <body>
     <div class="top-bar">
         <a href="/Polovni/">Pocetna</a>
     </div>
-    
-    
 
     <div class="form-container">
-    	<c:if test="${not empty listing.image}">
-            <div style="margin: 20px auto;">
-                <img src="data:image/jpeg;base64,${listing.base64Image}" alt="Listing Image" style="max-width: 100%; height: auto; border-radius: 10px;">
+        <c:if test="${not empty listing.base64Image}">
+            <div class="image-container">
+                <img src="data:image/jpeg;base64,${listing.base64Image }" alt="Listing Image">
             </div>
-    	</c:if>
-    
+        </c:if>
+
         <h1>${listing.name}</h1>
         <p><strong>Marka:</strong> ${listing.make}</p>
         <p><strong>Model:</strong> ${listing.model}</p>

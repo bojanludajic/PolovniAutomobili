@@ -14,10 +14,10 @@
 	<body>
 	
 		<div class="top-bar">
-			<a href="">Pretraga</a>
+			<a href="/Polovni/search/">Pretraga</a>
 			<sec:authorize access="isAuthenticated">
 				<a href="/Polovni/user/myListings">Moji oglasi</a>
-				<a href="/Polovni/user/cars">Postavi oglas</a>
+				<a href="/Polovni/user/newListing">Postavi oglas</a>
 				<a href="${pageContext.request.contextPath}/logout">Log out</a>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated">
@@ -26,15 +26,23 @@
 		</div>
 	
 		<div class="car-container">
-	    <c:forEach items="${listings}" var="listing">
-	        <a href="/Polovni/listing/?id=${listing.idListing }" class="car-link">
-	            <div class="car">
-	                <img src="data:image/png;base64,${listing.image}" alt="${listing.name}" class="car-image">
-	                <p>${listing.make} - ${listing.model} ${listing.year }</p>
-	                <p>${listing.price} €</p>
-	            </div>
-	        </a>
-	    </c:forEach>
-	</div>
+    <c:forEach items="${listings}" var="listing">
+        <a href="/Polovni/listing/?id=${listing.idListing }" class="car-link">
+            <div class="car">
+                <div class="price-tag">
+                    ${listing.price} €
+                </div>
+
+               <img src="data:image/jpeg;base64,${listing.base64Image}" alt="${listing.name}" class="car-image">
+
+
+                <div class="car-details">
+                    <p>${listing.make} - ${listing.model}</p>
+                    <p>${listing.year }
+                </div>
+            </div>
+        </a>
+    </c:forEach>
+</div>
 	</body>
 	</html>

@@ -27,7 +27,7 @@ body {
 }
 
 .form-container {
-    margin: 50px auto;
+    margin: 30px auto;
     width: 80%;
     max-width: 600px;
     text-align: left;
@@ -35,6 +35,13 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    margin: 10px 0;
 }
 
 h1 {
@@ -55,8 +62,9 @@ strong {
 
 img {
     display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
+    margin: 20px auto;
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
     border-radius: 10px;
 }

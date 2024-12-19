@@ -35,34 +35,53 @@ h1 {
 
 .car-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid columns */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
     justify-items: center;
 }
 
 .car {
+    position: relative;
     background-color: white;
     border-radius: 10px;
-    padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    overflow: hidden;
+    text-align: left;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .car-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+    width: 200px;
+    height: 150px;
+    object-fit: contain;
+    margin: 0 auto;
 }
 
-.car h2 {
+.car .price-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: orange;
+    color: white;
+    padding: 5px 10px;
     font-size: 18px;
-    margin: 10px 0;
-    color: #333;
+    font-weight: bold;
+    border-radius: 5px;
 }
 
-.car p {
+.car-details {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+.car-details p {
     font-size: 16px;
-    color: #888;
+    color: #333;
+    margin: 5px 0;
+    font-weight: bold;
 }

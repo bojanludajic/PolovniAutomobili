@@ -18,19 +18,19 @@
 
 	<div class="form-container">
 		<h1>Novi oglas</h1>
-		<form action="/Polovni/user/cars" method="get" id="makeForm">
-    <div style="margin-bottom: 10px;">
-        <label for="marka">Marka:</label>
-        <select name="make" id="marka" required onchange="this.form.submit()">
-            <option value="">Izaberite marku</option>
-            <c:forEach items="${makes}" var="m">
-                <option value="${m}" ${m == selectedMake ? 'selected="selected"' : ''}>${m}</option>
-            </c:forEach>
-        </select>
-    </div>
-</form>
+	<form action="/Polovni/user/newListing" method="get" id="makeForm">
+	    <div style="margin-bottom: 10px;">
+	        <label for="marka">Marka:</label>
+	        <select name="make" id="marka" required onchange="this.form.submit()">
+	            <option value="">Izaberite marku</option>
+	            <c:forEach items="${makes}" var="m">
+	                <option value="${m}" ${m == selectedMake ? 'selected="selected"' : ''}>${m}</option>
+	            </c:forEach>
+	        </select>
+	    </div>
+    </form>
 
-<form action="/Polovni/user/saveListing" method="post", modelAttribute="listing">
+<form action="<c:url value='/user/saveListing' />" method="post" enctype="multipart/form-data">
     <div style="margin-bottom: 10px;">
         <input type="hidden" name="make" value="${selectedMake}">
     
@@ -75,7 +75,7 @@
 
     <div style="margin-bottom: 10px;">
         <label for="slika">Slika:</label>
-        <input type="file" name="image" id="slika" accept=".png, .jpg, .jpeg" required>
+        <input type="file" name="uploadImage" id="slika" required>
     </div>
 
     <div>

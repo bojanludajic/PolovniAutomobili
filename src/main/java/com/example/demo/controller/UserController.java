@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -13,11 +15,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.dto.ListingDTO;
 import com.example.demo.security.CarService;
 import com.example.demo.service.ListingService;
 import com.example.demo.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import model.Listing;
 import model.User;
 
@@ -59,22 +64,35 @@ public class UserController {
 			m.addAttribute("user", user);
 		}
 		
+		List<ListingDTO> listingDTOs = new ArrayList<>();
 		List<Listing> listings = ls.findAll();
-	    for (Listing listing : listings) {
-	        if (listing.getImage() != null) {
-	            String base64Image = Base64.getEncoder().encodeToString(listing.getImage());
-	            listing.setBase64Image(base64Image);
-	            ls.saveListing(listing);
-	        }
-	    }
-	    
-		m.addAttribute("listings", ls.findAll());
+		
+		for(Listing l : listings) {
+			ListingDTO listingDTO = new ListingDTO(
+					l.getIdListing(),
+					l.getImage(),
+					l.getEngineSize(),
+					l.getHorsepower(),
+					l.getMake(),
+					l.getMileage(),
+					l.getModel(),
+					l.getName(),
+					l.getPrice(),
+					l.getYear()
+					);
+			String base64Image = Base64.getEncoder().encodeToString(l.getImage());
+			listingDTO.setBase64Image(base64Image);
+			listingDTOs.add(listingDTO);
+		}
+		
+		m.addAttribute("listings", listingDTOs);
 
 		return "home";
 	}
 
-	@GetMapping("/cars")
-	public String getCarsForListing(Model m, @RequestParam(value = "make", required = false) String make) {
+	@GetMapping("/newListing")
+	public String getCarsForListing(Model m, 
+			@RequestParam(value = "make", required = false) String make) {
 		m.addAttribute("makes", cs.getMakes());
 		if (make != null) {
 			m.addAttribute("selectedMake", make);
@@ -82,21 +100,33 @@ public class UserController {
 		} else {
 			m.addAttribute("models", new ArrayList<>());
 		}
+				
 		return "newListing";
 	}
+	
 
 	@PostMapping("/saveListing")
-	public String saveListing(@ModelAttribute("listing") Listing listing, Principal p) {
+	public String saveListing(@ModelAttribute("listing") Listing listing,
+			Principal p, @RequestParam("uploadImage") MultipartFile file) {
 		if (p != null) {
 			try {
 				User u = us.findByUsername(p.getName());
+				
+				if(!file.isEmpty()) {
+					byte[] bytes = file.getBytes();
+					listing.setImage(bytes);
+					String base64Image = Base64.getEncoder().encodeToString(bytes);
+				}
+				
 				listing.setIdUser(u.getIdUser());
+				
 				ls.saveListing(listing);
 			} catch (Exception ex) {
 				ex.printStackTrace();
+				return "error";
 			}
 		}
-		return "redirect:/";
+		return "redirect:/user/home";
 	}
 	
 	@GetMapping("/myListings")
@@ -115,6 +145,12 @@ public class UserController {
 			}
 		}
 		return "personalListings";
+	}
+	
+	@GetMapping("/deleteListing")
+	public String deleteListing(@RequestParam("id") Integer id) {
+		ls.deleteListing(id);
+		return "redirect:/user/myListings";
 	}
 
 }

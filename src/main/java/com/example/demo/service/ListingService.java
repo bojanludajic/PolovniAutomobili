@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.repository.ListingRepository;
 
@@ -16,7 +17,11 @@ public class ListingService {
 	ListingRepository lr;
 	
 	public void saveListing(Listing listing) {
-		lr.save(listing);
+		try {
+			lr.save(listing);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	
 	public List<Listing> findAll() {

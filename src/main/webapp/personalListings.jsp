@@ -16,7 +16,7 @@
     <div class="top-bar">
         <a href="/Polovni/">Pocetna</a>
         <a href="">Pretraga</a>
-        <a href="/Polovni/user/cars">Postavi oglas</a>
+        <a href="/Polovni/user/newListing">Postavi oglas</a>
         <a href="${pageContext.request.contextPath}/logout">Log out</a>
     </div>
 
@@ -30,14 +30,15 @@
         <c:forEach items="${listings}" var="listing">
             <div class="listing-container">
                 <div class="listing">
+                    <a href="/Polovni/listing/?id=${listing.idListing }" class="car-link">
                     <div class="listing-info">
-                        <img src="data:image/png;base64,${listing.image}" alt="${listing.name}" class="listing-image">
+                        <img src="data:image/jpg;base64,${listing.base64Image}" alt="${listing.name}" class="listing-image">
                         <div class="listing-details">
                             <h2>${listing.name}</h2>
                             <p>${listing.make} - ${listing.model} (${listing.year})</p>
-                            <p>Engine: ${listing.engineSize}L, ${listing.horsepower} HP</p>
-                            <p>Mileage: ${listing.mileage} km</p>
-                            <p>Price: ${listing.price} €</p>
+                            <p>Motor: ${listing.engineSize}L, ${listing.horsepower} HP</p>
+                            <p>Kilometraza: ${listing.mileage} km</p>
+                            <p>Cena: ${listing.price} €</p>
                         </div>
                     </div>
 
