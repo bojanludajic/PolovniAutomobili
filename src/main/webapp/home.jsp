@@ -18,6 +18,7 @@
 			<sec:authorize access="isAuthenticated">
 				<a href="/Polovni/user/myListings">Moji oglasi</a>
 				<a href="/Polovni/user/newListing">Postavi oglas</a>
+				<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
 				<a href="${pageContext.request.contextPath}/logout">Log out</a>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated">

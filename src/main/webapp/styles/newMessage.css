@@ -1,0 +1,114 @@
+body {
+    background-color: #ffcc00;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar {
+    background-color: gray;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.top-bar a:hover {
+    background-color: darkgray;
+}
+
+.form-container {
+    margin: 50px auto;
+    margin-left: 20px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.message-info {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.message-info p {
+    margin: 5px 0;
+}
+
+.message-info .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-info .row p {
+    margin: 5px;
+    flex: 1;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+textarea {
+    width: 95%;
+    height: 150px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    resize: vertical;
+}
+
+textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 150px;
+    margin: 20px auto;
+    display: block;
+}
+
+button:hover {
+    background-color: #45a049;
+}

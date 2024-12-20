@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.Base64;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.service.ListingService;
+import com.example.demo.service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import model.Listing;
+import model.User;
 
 @Controller
 @RequestMapping("/listing")
@@ -22,13 +23,23 @@ public class ListingController {
 	@Autowired
 	ListingService ls;
 	
+	@Autowired
+	UserService us;
+	
 	@PostMapping("/saveListing")
 	public String newListing() {
 		return "";
 	}
 	
 	@GetMapping("/")
-	public String getListingPage(@RequestParam("id") Integer id, Model m) {
+	public String getListingPage(@RequestParam("id") Integer id, Model m, Principal p) {
+		if(p != null) {
+			User u = us.findByUsername(p.getName());
+			m.addAttribute("idUser", u.getIdUser());
+		} else {
+			m.addAttribute("idUser", -1);
+		}
+		
 		Listing l = ls.findyById(id);
 		m.addAttribute("listing", l);
 		

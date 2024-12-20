@@ -57,12 +57,12 @@ h1 {
 .listing-info {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     width: 85%;
 }
 
 .listing img {
-    width: 150px;
+    width: 19%;
     height: auto;
     margin-right: 20px;
     border-radius: 10px;
@@ -73,6 +73,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     flex: 1;
+    gap: 6%;
 }
 
 .listing-details h2 {
@@ -82,7 +83,7 @@ h1 {
 
 .listing-details p {
     margin: 5px 0;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .trash-icon {

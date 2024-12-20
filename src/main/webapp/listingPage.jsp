@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="sec"
+		uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +15,11 @@
     </div>
 
     <div class="form-container">
-        <c:if test="${not empty listing.base64Image}">
+        <c:if test="${empty listing.base64Image}">
+        </c:if>
             <div class="image-container">
                 <img src="data:image/jpeg;base64,${listing.base64Image }" alt="Listing Image">
             </div>
-        </c:if>
 
         <h1>${listing.name}</h1>
         <p><strong>Marka:</strong> ${listing.make}</p>
@@ -28,6 +29,22 @@
         <p><strong>Kilometraza:</strong> ${listing.mileage} km</p>
         <p><strong>Godiste:</strong> ${listing.year}</p>
         <p><strong>Cena:</strong> ${listing.price}€</p>
+        
+        <sec:authorize access="isAuthenticated">
+	        <div class="button-container">
+			    <form action="/Polovni/user/favListing" method="post" style="display: inline;">
+			        <input type="hidden" name="idListing" value="${listing.idListing}">
+			        <button type="submit" class="heart-button" title="Like">&#x2764;</button>
+			    </form>
+
+				<c:if test="${listing.idUser != idUser}">
+				    <form action="/Polovni/user/newMessage" method="get" style="display: inline;">
+				        <input type="hidden" name="idListing" value="${listing.idListing}">
+				        <button type="submit" class="message-button" title="Message">&#x1F4AC;</button>
+				    </form>
+			    </c:if>
+			</div>
+	    </sec:authorize>
     </div>
 </body>
 </html>

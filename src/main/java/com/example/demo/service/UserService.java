@@ -33,6 +33,10 @@ public class UserService {
 		return ur.findByUsername(username);
 	}
 	
+	public User findById(Integer id) {
+		return ur.findById(id).get();
+	}
+	
 	public void save(User u) {
 		Role r = rr.findById(2).get();
 		u.setRole(r);
