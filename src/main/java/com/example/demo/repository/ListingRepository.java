@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import model.Listing;
 
 @Repository
-public interface ListingRepository extends JpaRepository<Listing, Integer> {
+public interface ListingRepository extends JpaRepository<Listing, Integer>, ListingSearchRepository {
 
 	@Query("Select l from Listing l where l.idUser= :id")
 	public List<Listing> getListingsForUser(@Param("id") Integer id);

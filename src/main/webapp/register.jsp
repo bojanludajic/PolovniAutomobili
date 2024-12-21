@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Registration</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/styles/index.css'/>">
 <link rel="stylesheet" href="<c:url value='/styles/auth.css'/>">
 </head>
 <body>
