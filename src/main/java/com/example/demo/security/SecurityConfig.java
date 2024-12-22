@@ -25,8 +25,7 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
 				.authorizeHttpRequests(requests -> requests
-						.requestMatchers("/login.jsp", "/register.jsp", "/home.jsp",
-	                            "/styles/**", "/listing/*", "/search/**", "/icon/**", "/auth/**", "/home", "/", "/search/*").permitAll()
+						.requestMatchers("/*", "/styles/**", "/register.jsp", "/auth/**", "/search/**", "/listing/**").permitAll()
 						.requestMatchers("/user/**", "/personalListings.jsp", "/favoriteListings.jsp").hasAnyRole("Admin", "User")
 						.requestMatchers("/admin/**", "/allMessages.jsp").hasRole("Admin")
 						.anyRequest().authenticated())

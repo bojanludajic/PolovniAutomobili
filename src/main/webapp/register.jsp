@@ -18,11 +18,11 @@
 
 	<form action="/Polovni/auth/saveUser" method="post" modelAttribute="user">
 		<h1>Registracija</h1>
-		Ime: <input type="text" name="name" placeholder="Unesite vaše ime"></input><br>
-		Email: <input type="text" name="email" placeholder="Unesite vaš email"></input><br>
+		Ime: <input type="text" name="name" placeholder="Unesite vaše ime" required></input><br>
+		Email: <input type="text" name="email" placeholder="Unesite vaš email" required></input><br>
 		Korisnicko Ime: <input type="text" name="username"
-			placeholder="Unesite korisnicko ime"></input><br> Lozinka: <input
-			type="password" name="password" placeholder="Unesite lozinku"></input><br>
+			placeholder="Unesite korisnicko ime" required></input><br> Lozinka: <input
+			type="password" name="password" placeholder="Unesite lozinku" required></input><br>
 		<button type="submit">Registruj se</button>
 	</form>
 </body>

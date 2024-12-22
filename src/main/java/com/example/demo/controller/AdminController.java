@@ -68,5 +68,11 @@ public class AdminController {
 			return "redirect:/admin/allMessages";
 		}
 	}
+	
+	@GetMapping("/reports")
+	public String reports() {
+		
+		return "reports";
+	}
 
 }
