@@ -49,5 +49,9 @@ public class FavoriteService {
 			throw new IllegalArgumentException("Unet nepostojeci user/oglas");
 		}
 	}
+	
+	public void deleteFavorite(Integer idUser, Integer idListing) {
+		fr.deleteFavorite(idUser, idListing);
+	}
 
 }

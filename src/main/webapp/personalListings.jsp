@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="container">
-		<h1>Rezultati pretrage</h1>
+		<h1>Moji oglasi</h1>
 
 		<c:if test="${not empty message}">
 			<p>${message}</p>

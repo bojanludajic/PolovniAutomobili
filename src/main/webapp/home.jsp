@@ -9,6 +9,7 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>Polovni automobili</title>
+	<link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/styles/index.css'/>">
 	</head>
 	<body>
@@ -16,10 +17,18 @@
 		<div class="top-bar">
 			<a href="/Polovni/search/">Pretraga</a>
 			<sec:authorize access="isAuthenticated">
-				<a href="/Polovni/user/myListings">Moji oglasi</a>
-				<a href="/Polovni/user/newListing">Postavi oglas</a>
-				<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
-				<a href="${pageContext.request.contextPath}/logout">Log out</a>
+				<sec:authorize access="hasRole('User')">
+					<a href="/Polovni/user/myListings">Moji oglasi</a>
+					<a href="/Polovni/user/newListing">Postavi oglas</a>
+					<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
+					<a href="${pageContext.request.contextPath}/logout">Log out</a>
+				</sec:authorize>
+				<sec:authorize access="hasRole('Admin')">
+					<a href="/Polovni/">Upravljanje oglasima</a>
+					<a href="/Polovni/">Upravljanje porukama</a>
+					<a href="/Polovni/">Izvestaji</a>
+					<a href="${pageContext.request.contextPath}/logout">Log out</a>
+				</sec:authorize>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated">
 				<a href="/Polovni/login.jsp">Log in</a>
@@ -39,7 +48,7 @@
 
                 <div class="car-details">
                     <p>${listing.make} - ${listing.model}</p>
-                    <p>${listing.year }
+                    <p>${listing.year }</p>
                 </div>
             </div>
         </a>

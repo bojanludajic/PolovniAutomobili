@@ -27,7 +27,7 @@
 				name="password" required> <br>
 			<button type="submit">Log in</button>
 		</form>
-		<a href="/Polovni/register.jsp">Nemas nalog? Registruj se!</a>
+		Nemas nalog? <a href="/Polovni/register.jsp">Registruj se!</a>
 		<c:if test="${!empty message}">
 			<p class="c-message">${message}</p>
 		</c:if>

@@ -46,7 +46,7 @@
 							</div>
 						</div>
 						<div class="trash-icon">
-						<a href="/Polovni/user/removeFavorite?id=${listing.idListing}"
+						<a href="/Polovni/user/deleteFavorite?idListing=${listing.idListing}"
 							class="trash-link"> <i class="fa-solid fa-minus"></i>
 						</a>
 						</div>

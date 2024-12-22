@@ -23,17 +23,13 @@ h1 {
 
 .listing {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
     background-color: #ffffff;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.listing:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .listing img {
@@ -77,16 +73,17 @@ h1 {
 }
 
 .trash-icon {
-    margin-left: auto;
+    margin-left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: #e74c3c;
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0;
 }
 
 .trash-icon:hover {

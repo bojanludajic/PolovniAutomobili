@@ -17,16 +17,12 @@
 </head>
 <body>
 	<div class="top-bar">
+		<a href="/Polovni/">Pocetna</a>
 		<a href="/Polovni/search/">Pretraga</a>
-		<sec:authorize access="isAuthenticated">
-			<a href="/Polovni/user/myListings">Moji oglasi</a>
-			<a href="/Polovni/user/newListing">Postavi oglas</a>
-			<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
-			<a href="${pageContext.request.contextPath}/logout">Log out</a>
-		</sec:authorize>
-		<sec:authorize access="!isAuthenticated">
-			<a href="/Polovni/login.jsp">Log in</a>
-		</sec:authorize>
+		<a href="/Polovni/user/myListings">Moji oglasi</a>
+		<a href="/Polovni/user/newListing">Postavi oglas</a>
+		<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
+		<a href="${pageContext.request.contextPath}/logout">Log out</a>
 	</div>
 
 

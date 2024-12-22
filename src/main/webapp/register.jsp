@@ -16,8 +16,8 @@
 		<a href="${pageContext.request.contextPath}/">Pocetna</a>
 	</div>
 
-	<form action="/Polovni/user/saveUser" method="post"
-		modelAttribute="user">
+	<form action="/Polovni/auth/saveUser" method="post" modelAttribute="user">
+		<h1>Registracija</h1>
 		Ime: <input type="text" name="name" placeholder="Unesite vaše ime"></input><br>
 		Email: <input type="text" name="email" placeholder="Unesite vaš email"></input><br>
 		Korisnicko Ime: <input type="text" name="username"

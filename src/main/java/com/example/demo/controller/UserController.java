@@ -44,23 +44,6 @@ public class UserController {
 	@Autowired
 	MessageService ms;
 
-	@GetMapping("/registerUser")
-	public String newUser() {
-		return "register";
-	}
-
-	@PostMapping("/saveUser")
-	public String saveUser(@ModelAttribute("user") User u, Model m) {
-		try {
-			us.save(u);
-			m.addAttribute("message", "Uspesna registracija!");
-		} catch (Exception ex) {
-			m.addAttribute("message", "Neuspesna registracija!");
-		}
-
-		return "login";
-	}
-
 	@GetMapping("/newListing")
 	public String newListing(Model m, @RequestParam(value = "make", required = false) String make) {
 		m.addAttribute("makes", cs.getMakes());
@@ -88,7 +71,7 @@ public class UserController {
 				return "error";
 			}
 		}
-		return "redirect:/user/home";
+		return "redirect:/";
 	}
 
 	@GetMapping("/deleteListing")
@@ -140,12 +123,27 @@ public class UserController {
 			User u = us.findByUsername(p.getName());
 
 			List<Listing> favorites = fs.favoritesForUser(u.getIdUser());
-			m.addAttribute("favorites", favorites);
+			if(favorites.isEmpty()) {
+				m.addAttribute("message", "Nemate nijedan sacuvan oglas!");
+			} else {
+				m.addAttribute("favorites", favorites);
+			}
 		}
 
 		return "favoriteListings";
 	}
-
+	
+	@GetMapping("/deleteFavorite")
+	public String deleteFavorite(Principal p, @RequestParam("idListing") Integer idListing) {
+		if (p != null) {
+			User u = us.findByUsername(p.getName());
+			
+			fs.deleteFavorite(u.getIdUser(), idListing);
+		}
+		
+		return "redirect:/user/favListings";
+	}
+	
 	@GetMapping("/newMessage")
 	public String newMessage(Principal p, @RequestParam("idListing") Integer id, Model m) {
 		if (p != null) {
