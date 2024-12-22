@@ -24,9 +24,9 @@
 					<a href="${pageContext.request.contextPath}/logout">Log out</a>
 				</sec:authorize>
 				<sec:authorize access="hasRole('Admin')">
-					<a href="/Polovni/">Upravljanje oglasima</a>
-					<a href="/Polovni/">Upravljanje porukama</a>
-					<a href="/Polovni/">Izvestaji</a>
+					<a href="/Polovni/admin/listingManagement">Upravljanje oglasima</a>
+					<a href="/Polovni/admin/allMessages">Upravljanje porukama</a>
+					<a href="/Polovni/admin/reports">Izvestaji</a>
 					<a href="${pageContext.request.contextPath}/logout">Log out</a>
 				</sec:authorize>
 			</sec:authorize>

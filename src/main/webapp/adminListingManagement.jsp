@@ -1,44 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Pretraga</title>
+<title>Upravljanje oglasima</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/styles/index.css'/>">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/styles/personalListings.css'/>">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
 	<div class="top-bar">
-		<a href="/Polovni/">Pocetna</a>
-		<sec:authorize access="isAuthenticated">
-			<sec:authorize access="hasRole('User')">
-				<a href="/Polovni/user/myListings">Moji oglasi</a>
-				<a href="/Polovni/user/newListing">Postavi oglas</a>
-				<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
-				<a href="${pageContext.request.contextPath}/logout">Log out</a>
-			</sec:authorize>
-			<sec:authorize access="hasRole('Admin')">
-				<a href="/Polovni/admin/listingManagement">Upravljanje oglasima</a>
-					<a href="/Polovni/admin/allMessages">Upravljanje porukama</a>
-					<a href="/Polovni/admin/reports">Izvestaji</a>
-					<a href="${pageContext.request.contextPath}/logout">Log out</a>
-			</sec:authorize>
-		</sec:authorize>
-		<sec:authorize access="!isAuthenticated">
-			<a href="/Polovni/login.jsp">Log in</a>
-		</sec:authorize>
+		<a href="${pageContext.request.contextPath}/">Pocetna</a> <a
+			href="/Polovni/admin/allMessages">Upravljanje porukama</a> <a
+			href="/Polovni/admin/reports">Izvestaji</a> <a
+			href="${pageContext.request.contextPath}/logout">Log out</a>
 	</div>
 
-
 	<div class="container">
-		<h1>Rezultati pretrage</h1>
+		<h1>Svi oglasi</h1>
 
 		<c:if test="${not empty message}">
 			<p>${message}</p>
@@ -60,9 +46,15 @@
 								<p>Kilometraza: ${listing.mileage} km</p>
 							</div>
 						</div>
-					</div>
+						<div class="trash-icon">
+							<a href="/Polovni/admin/deleteListing?id=${listing.idListing}"
+								class="trash-link"> <i class="fas fa-trash-alt"></i>
+							</a>
+						</div>
+					</div>	
 			</div>
 		</c:forEach>
 	</div>
+
 </body>
 </html>

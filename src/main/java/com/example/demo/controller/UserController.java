@@ -164,8 +164,9 @@ public class UserController {
 	public String sendMessage(@RequestParam("idSender") Integer id,
 			@RequestParam("idReceiver") Integer idRec,
 			@RequestParam("text") String text) {
-		ms.newMessage(id, idRec, text);
-		
+		if(!text.isBlank()) {
+			ms.newMessage(id, idRec, text);
+		}
 		return "redirect:/";
 	}
 

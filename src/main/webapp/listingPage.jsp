@@ -18,10 +18,18 @@
 			<a href="/Polovni/">Pocetna</a>
 			<a href="/Polovni/search/">Pretraga</a>
 			<sec:authorize access="isAuthenticated">
-				<a href="/Polovni/user/myListings">Moji oglasi</a>
-				<a href="/Polovni/user/newListing">Postavi oglas</a>
-				<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
-				<a href="${pageContext.request.contextPath}/logout">Log out</a>
+				<sec:authorize access="hasRole('User')">
+					<a href="/Polovni/user/myListings">Moji oglasi</a>
+					<a href="/Polovni/user/newListing">Postavi oglas</a>
+					<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
+					<a href="${pageContext.request.contextPath}/logout">Log out</a>
+				</sec:authorize>
+				<sec:authorize access="hasRole('Admin')">
+					<a href="/Polovni/admin/listingManagement">Upravljanje oglasima</a>
+					<a href="/Polovni/">Upravljanje porukama</a>
+					<a href="/Polovni/">Izvestaji</a>
+					<a href="${pageContext.request.contextPath}/logout">Log out</a>
+				</sec:authorize>
 			</sec:authorize>
 			<sec:authorize access="!isAuthenticated">
 				<a href="/Polovni/login.jsp">Log in</a>

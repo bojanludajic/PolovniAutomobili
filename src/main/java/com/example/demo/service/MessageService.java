@@ -2,7 +2,9 @@ package com.example.demo.service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,13 +24,23 @@ public class MessageService {
 		m.setIdSender(idSender);
 		m.setIdReceiver(idReceiver);
 		m.setContent(text);
-		m.setTimestamp(null);
 		
         LocalDateTime localDateTime = LocalDateTime.now();
         Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 		m.setTimestamp(date);
 		
 		mr.save(m);
+	}
+	
+	public List<Message> findAll() {
+		List<Message> messages = mr.findAll();
+		messages.sort(Comparator.comparing(Message::getTimestamp));
+		
+		return messages;
+	}
+	
+	public void deleteMessage(Integer id) {
+		mr.deleteById(id);
 	}
 	
 }

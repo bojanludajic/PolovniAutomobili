@@ -46,7 +46,7 @@
 				type="hidden" name="idReceiver" value="${seller.idUser}" /> <label
 				for="message">Poruka:</label><br>
 			<textarea id="message" name="text"
-				placeholder="Unesite tekst poruke..."></textarea>
+				placeholder="Unesite tekst poruke..." required></textarea>
 			<br>
 			<br>
 
