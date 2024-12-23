@@ -43,5 +43,17 @@ public class UserService {
 		u.setPassword(passwordEncoder.encode(u.getPassword()));
 		ur.save(u);
 	}
+	
+	public String getName(Integer id) {
+		return ur.findById(id).get().getName();
+	}
+	
+	public List<User> findAll() {
+		return ur.findAll();
+	}
+	
+	public List<User> getNormalUsers() {
+		return ur.getNormalUsers();
+	}
 		
 }

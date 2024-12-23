@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +17,15 @@ import com.example.demo.service.ListingService;
 import com.example.demo.service.MessageService;
 import com.example.demo.service.UserService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import model.Listing;
 import model.Message;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 @RequestMapping("/admin")
@@ -70,9 +81,27 @@ public class AdminController {
 	}
 	
 	@GetMapping("/reports")
-	public String reports() {
+	public String reports(Model m) {
+		m.addAttribute("users", us.getNormalUsers());
 		
 		return "reports";
+	}
+	
+	@GetMapping("/getListingReport")
+	public void showReport(HttpServletResponse response, @RequestParam Integer idUser) throws Exception {
+		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(ls.findByUser(idUser));
+		InputStream inputStream = this.getClass().getResourceAsStream("/jasperreports/ListingReport.jrxml");
+		JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
+		Map<String, Object> params = new HashMap<>();
+		params.put("Name", us.getName(idUser));
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
+		inputStream.close();
+		
+		response.setContentType("application/x-download");
+		response.addHeader("Content-disposition", "attachment; filename=OglasiKorisnika.pdf");
+		
+		OutputStream out = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, out);
 	}
 
 }

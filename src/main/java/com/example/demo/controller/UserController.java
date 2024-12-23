@@ -64,6 +64,7 @@ public class UserController {
 			try {
 				User u = us.findByUsername(p.getName());
 				listing.setIdUser(u.getIdUser());
+				listing.setImage(file.getBytes());
 
 				ls.saveListing(listing);
 			} catch (Exception ex) {
@@ -150,7 +151,11 @@ public class UserController {
 			User u = us.findByUsername(p.getName());
 			Listing l = ls.findyById(id);
 			User seller = us.findById(l.getIdUser());
-
+			
+			if(u == seller) {
+				return "error";
+			}
+			
 			m.addAttribute("user", u);
 			m.addAttribute("listing", l);
 			m.addAttribute("seller", seller);
@@ -164,9 +169,10 @@ public class UserController {
 	public String sendMessage(@RequestParam("idSender") Integer id,
 			@RequestParam("idReceiver") Integer idRec,
 			@RequestParam("text") String text) {
-		if(!text.isBlank()) {
+		if(!text.isBlank() && id != idRec) {
 			ms.newMessage(id, idRec, text);
 		}
+		
 		return "redirect:/";
 	}
 
