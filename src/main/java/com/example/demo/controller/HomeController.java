@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.service.ListingService;
 import com.example.demo.service.RateLimitService;
+import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import model.User;
 import model.Listing;
 
 @Controller
@@ -24,6 +27,9 @@ public class HomeController {
 	
 	@Autowired
 	RateLimitService rateLimitService;
+	
+	@Autowired
+	UserService us;
 	
 	@GetMapping("/")
     public String getHomePage(Model m, HttpServletRequest request) {

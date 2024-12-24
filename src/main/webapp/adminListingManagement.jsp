@@ -32,19 +32,23 @@
 
 		<c:forEach items="${listings}" var="listing">
 			<div class="listing-container">
-				<a href="/Polovni/listing/?id=${listing.idListing }"
-					class="car-link">
 					<div class="listing">
-						<img src="data:image/jpg;base64,${listing.base64Image}"
-							alt="${listing.name}" class="listing-image">
+						<a href="/Polovni/listing/?id=${listing.idListing }"
+						class="car-link">
+							<img src="data:image/jpg;base64,${listing.base64Image}"
+								alt="${listing.name}" class="listing-image">
+						</a>
 						<div class="listing-info">
-							<h2>${listing.name}</h2>
-							<p class="price">${listing.price}€</p>
-							<div class="listing-details">
-								<p>${listing.make}- ${listing.model} (${listing.year})</p>
-								<p>Motor: ${listing.engineSize}ccm, ${listing.horsepower} ks</p>
-								<p>Kilometraza: ${listing.mileage} km</p>
-							</div>
+							<a href="/Polovni/listing/?id=${listing.idListing }"
+							class="car-link">
+								<h2>${listing.name}</h2>
+								<p class="price">${listing.price}€</p>
+								<div class="listing-details">
+									<p>${listing.make}- ${listing.model} (${listing.year})</p>
+									<p>Motor: ${listing.engineSize}ccm, ${listing.horsepower} ks</p>
+									<p>Kilometraza: ${listing.mileage} km</p>
+								</div>
+							</a>
 						</div>
 						<div class="trash-icon">
 							<a href="/Polovni/admin/deleteListing?id=${listing.idListing}"

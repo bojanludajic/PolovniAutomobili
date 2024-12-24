@@ -54,5 +54,9 @@
         </a>
     </c:forEach>
 </div>
+    <c:if test="${!empty user }">
+    	<h1>${user.name }</h1>
+    </c:if>
+
 	</body>
 	</html>

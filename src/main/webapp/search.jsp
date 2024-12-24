@@ -37,7 +37,7 @@
 	</div>
 
 	<div class="form-container">
-		<h1>Search Listings</h1>
+		<h1>Pretraga oglasa</h1>
 
 		<form action="/Polovni/search/" method="get" id="makeForm">
 			<div style="margin-bottom: 10px;">
@@ -57,7 +57,7 @@
 
 			<div class="form-group">
 				<label for="model">Model:</label> <select id="model" name="model">
-					<option value="">Any</option>
+					<option value="">Bilo koji</option>
 					<c:forEach items="${models}" var="model">
 						<option value="${model}">${model}</option>
 					</c:forEach>
@@ -66,29 +66,29 @@
 
 			<div class="form-group">
 				<label for="price">Cena:</label> <input type="number" id="price-min"
-					name="priceMin" placeholder="Min" min="0"> <input
-					type="number" id="price-max" name="priceMax" placeholder="Max"
+					name="priceMin" placeholder="Minimalna cena" min="0"> <input
+					type="number" id="price-max" name="priceMax" placeholder="Maksimalna cena"
 					min="0">
 			</div>
 
 			<div class="form-group">
 				<label for="year">Godiste:</label> <input type="number"
-					id="year-min" name="yearMin" placeholder="Min" step="1" min="1900">
-				<input type="number" id="year-max" name="yearMax" placeholder="Max"
+					id="year-min" name="yearMin" placeholder="Minimalno godiste" step="1" min="1900">
+				<input type="number" id="year-max" name="yearMax" placeholder="Maksimalo godiste"
 					step="1" min="1900">
 			</div>
 
 			<div class="form-group">
 				<label for="year">Kubikaza:</label> <input type="number"
-					id="size-min" name="sizeMin" placeholder="Min" step="1" min="1">
-				<input type="number" id="size-max" name="sizeMax" placeholder="Max"
+					id="size-min" name="sizeMin" placeholder="Minimalna kubikaza" step="1" min="1">
+				<input type="number" id="size-max" name="sizeMax" placeholder="Maksimalna kubikaza"
 					step="1" min="1">
 			</div>
 
 			<div class="form-group">
-				<label for="year">Snaga motora:</label> <input type="number"
-					id="size-min" name="powerMin" placeholder="Min" step="1" min="1">
-				<input type="number" id="size-max" name="powerMax" placeholder="Max"
+				<label for="year">Snaga motora (ks):</label> <input type="number"
+					id="size-min" name="powerMin" placeholder="Minimalna snaga" step="1" min="1">
+				<input type="number" id="size-max" name="powerMax" placeholder="Maksimalna snaga"
 					step="1" min="1">
 			</div>
 
