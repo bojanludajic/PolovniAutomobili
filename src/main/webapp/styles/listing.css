@@ -34,10 +34,11 @@ strong {
 
 img {
     display: block;
+    object-fit: contain;
     margin: 20px auto;
-    width: 600px;
-    height: 350px;
-    object-fit: cover;
+    width: 80%;
+    height: 60%;
+    object-fit: contain;
     border-radius: 10px;
 }
 

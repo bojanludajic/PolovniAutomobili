@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.dto.ListingDTO;
 import com.example.demo.service.CarService;
 import com.example.demo.service.FavoriteService;
 import com.example.demo.service.ListingService;
 import com.example.demo.service.MessageService;
+import com.example.demo.service.RateLimitService;
 import com.example.demo.service.UserService;
 
 import model.Listing;
@@ -43,9 +42,19 @@ public class UserController {
 
 	@Autowired
 	MessageService ms;
+	
+	@Autowired
+	RateLimitService rateLimitService;
 
 	@GetMapping("/newListing")
-	public String newListing(Model m, @RequestParam(value = "make", required = false) String make) {
+	public String newListing(Model m, @RequestParam(value = "make", required = false) String make,
+			Principal p) {
+		if(p != null) {
+			if(rateLimitService.isRateLimited(p.getName(), "newListing")) {
+				m.addAttribute("rateLimitExceeded", "greska429");
+				return "error";
+			}
+		}
 		m.addAttribute("makes", cs.getMakes());
 		if (make != null) {
 			m.addAttribute("selectedMake", make);
@@ -59,7 +68,7 @@ public class UserController {
 
 	@PostMapping("/saveListing")
 	public String saveListing(@ModelAttribute("listing") Listing listing, Principal p,
-			@RequestParam("uploadImage") MultipartFile file) {
+			@RequestParam("uploadImage") MultipartFile file, Model m) {
 		if (p != null) {
 			try {
 				User u = us.findByUsername(p.getName());
@@ -148,6 +157,10 @@ public class UserController {
 	@GetMapping("/newMessage")
 	public String newMessage(Principal p, @RequestParam("idListing") Integer id, Model m) {
 		if (p != null) {
+			if(rateLimitService.isRateLimited(p.getName(), "message")) {
+				m.addAttribute("rateLimitExceeded", "greska429");
+				return "error";
+			}
 			User u = us.findByUsername(p.getName());
 			Listing l = ls.findyById(id);
 			User seller = us.findById(l.getIdUser());

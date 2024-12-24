@@ -3,7 +3,7 @@
     max-width: 1200px;
     margin: 30px auto;
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -29,7 +29,8 @@ h1 {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    gap: 15px;
+    flex-wrap: nowrap;
 }
 
 .listing img {
@@ -37,14 +38,14 @@ h1 {
     height: 150px;
     object-fit: cover;
     border-radius: 10px;
-    margin-right: 20px;
+    flex-shrink: 0;
 }
 
 .listing-info {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    flex: 1;
+    gap: 10px;
 }
 
 .listing-info h2 {
@@ -73,7 +74,6 @@ h1 {
 }
 
 .trash-icon {
-    margin-left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;

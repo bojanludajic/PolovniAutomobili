@@ -9,9 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.service.CarService;
 import com.example.demo.service.ListingService;
+import com.example.demo.service.RateLimitService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import model.Listing;
 
 @Controller
@@ -21,8 +22,17 @@ public class HomeController {
 	@Autowired
 	ListingService ls;
 	
+	@Autowired
+	RateLimitService rateLimitService;
+	
 	@GetMapping("/")
-    public String getHomePage(Model m) {
+    public String getHomePage(Model m, HttpServletRequest request) {
+		String sessionId = request.getSession().getId();
+		if(rateLimitService.isRateLimited(sessionId, "home")) {
+			m.addAttribute("rateLimitExceeded", "greska429");
+			return "error";
+		}
+		
 		List<Listing> listings = ls.findAll();
 		Collections.shuffle(listings);
         m.addAttribute("listings", listings);  

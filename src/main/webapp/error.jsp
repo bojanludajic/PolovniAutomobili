@@ -18,6 +18,9 @@
     <div style="display: flex; justify-content: center; align-items: center; height: 80vh; font-size: 24px; color: #333;">
         <p>Doslo je do greske</p>
     </div>
+    <c:if test="${!empty rateLimitExceeded }"> 
+        <br><p>Prekoracili ste broj zahteva! Molim sacekajte.</p>
+    </c:if>
 
 </body>
 </html>

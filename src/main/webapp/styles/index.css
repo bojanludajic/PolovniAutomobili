@@ -35,10 +35,10 @@ h1 {
 
 .car-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    padding: 10px;
     justify-items: center;
+    row-gap: 10px;
 }
 
 
@@ -50,20 +50,20 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     text-align: left;
-    width: 100%;
+    width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    height: 100%;
 }
 
 
 .car:hover {
-    transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .car-image {
-    width: 200px;
+    width: 100%;
     height: 150px;
     object-fit: contain;
     margin: 0 auto;
