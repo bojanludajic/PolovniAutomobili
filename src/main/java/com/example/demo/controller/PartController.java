@@ -23,13 +23,19 @@ public class PartController {
 	
 	@GetMapping("/partsForModel")
 	public String getParts(@RequestParam String make, @RequestParam String model, Model m) {
-		List<Part> parts = ps.getParts(make, model);
-
-		m.addAttribute("make", make);
-		m.addAttribute("model", model);
-		m.addAttribute("parts", parts);
-		
-		return "parts";
+		try {
+			List<Part> parts = ps.getParts(make, model);
+	
+			m.addAttribute("make", make);
+			m.addAttribute("model", model);
+			m.addAttribute("parts", parts);
+			
+			return "parts";
+		} catch(Exception ex) {
+			m.addAttribute("message", "Nema delova za ovaj auto!");
+			
+			return "error";
+		}
 	}
 	
 	@GetMapping("/order")

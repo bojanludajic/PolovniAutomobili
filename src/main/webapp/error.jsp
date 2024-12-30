@@ -18,7 +18,7 @@
     <div style="display: flex; justify-content: center; align-items: center; height: 80vh; font-size: 24px; color: #333;">
         <p>Doslo je do greske</p>
     </div>
-    <c:if test=${!empty message }">
+    <c:if test="${!empty message }">
     	<br><p>${message }</p>
     </c:if>
 
