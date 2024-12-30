@@ -51,7 +51,7 @@ public class UserController {
 			Principal p) {
 		if(p != null) {
 			if(rateLimitService.isRateLimited(p.getName(), "newListing")) {
-				m.addAttribute("rateLimitExceeded", "greska429");
+				m.addAttribute("message", "Prekoracili ste maksimalan broj zahteva! Molim sacekajte.");
 				return "error";
 			}
 		}
@@ -158,7 +158,7 @@ public class UserController {
 	public String newMessage(Principal p, @RequestParam("idListing") Integer id, Model m) {
 		if (p != null) {
 			if(rateLimitService.isRateLimited(p.getName(), "message")) {
-				m.addAttribute("rateLimitExceeded", "greska429");
+				m.addAttribute("message", "Prekoracili ste maksimalan broj zahteva! Molim sacekajte.");
 				return "error";
 			}
 			User u = us.findByUsername(p.getName());

@@ -26,7 +26,7 @@ public class SecurityConfig {
 		return http
 				.authorizeHttpRequests(requests -> requests
 						.requestMatchers("/*", "/styles/**", "/register.jsp", "/auth/**", "/search/**", "/listing/**").permitAll()
-						.requestMatchers("/user/**", "/personalListings.jsp", "/favoriteListings.jsp").hasAnyRole("Admin", "User")
+						.requestMatchers("/user/**", "/personalListings.jsp", "/favoriteListings.jsp", "/parts/**").hasAnyRole("Admin", "User")
 						.requestMatchers("/admin/**", "/allMessages.jsp").hasRole("Admin")
 						.anyRequest().authenticated())
 				.formLogin(form -> form.loginPage("/login.jsp").permitAll()

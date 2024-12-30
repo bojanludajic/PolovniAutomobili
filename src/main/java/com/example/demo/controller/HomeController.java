@@ -35,7 +35,7 @@ public class HomeController {
     public String getHomePage(Model m, HttpServletRequest request) {
 		String sessionId = request.getSession().getId();
 		if(rateLimitService.isRateLimited(sessionId, "home")) {
-			m.addAttribute("rateLimitExceeded", "greska429");
+			m.addAttribute("message", "Prekoracili ste maksimalan broj zahteva! Molim sacekajte.");
 			return "error";
 		}
 		

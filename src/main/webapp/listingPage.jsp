@@ -84,6 +84,8 @@
 				</c:if>
 			</div>
 		</sec:authorize>
+		
+		<a href="/Polovni/parts/partsForModel?make=${listing.make }&model=${listing.model}" >Nabavi delove</a>
 	</div>
 </body>
 </html>

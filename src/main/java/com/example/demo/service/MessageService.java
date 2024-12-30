@@ -34,7 +34,7 @@ public class MessageService {
 	
 	public List<Message> findAll() {
 		List<Message> messages = mr.findAll();
-		messages.sort(Comparator.comparing(Message::getTimestamp));
+		messages.sort(Comparator.comparing(Message::getTimestamp).reversed());
 		
 		return messages;
 	}
