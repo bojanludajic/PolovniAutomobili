@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.service.CarService;
 import com.example.demo.service.FavoriteService;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.ListingService;
 import com.example.demo.service.MessageService;
 import com.example.demo.service.RateLimitService;
@@ -45,6 +46,9 @@ public class UserController {
 	
 	@Autowired
 	RateLimitService rateLimitService;
+	
+	@Autowired
+	ImageService is;
 
 	@GetMapping("/newListing")
 	public String newListing(Model m, @RequestParam(value = "make", required = false) String make,
@@ -73,7 +77,11 @@ public class UserController {
 			try {
 				User u = us.findByUsername(p.getName());
 				listing.setIdUser(u.getIdUser());
-				listing.setImage(file.getBytes());
+				
+				if(!file.isEmpty()) {
+					byte[] resizedImage = is.resizeAndRecompressImage(file, 480, 288, 0.8);
+					listing.setImage(resizedImage);
+				}
 
 				ls.saveListing(listing);
 			} catch (Exception ex) {

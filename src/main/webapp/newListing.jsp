@@ -81,7 +81,7 @@
 
 			<div style="margin-bottom: 10px;">
 				<label for="slika">Slika:</label> <input type="file"
-					name="uploadImage" id="slika" required>
+					name="uploadImage" id="slika" required accept=".jpg, .png, .jpeg">
 			</div>
 
 			<div>

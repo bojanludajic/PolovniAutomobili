@@ -25,6 +25,12 @@ public class PartController {
 	public String getParts(@RequestParam String make, @RequestParam String model, Model m) {
 		try {
 			List<Part> parts = ps.getParts(make, model);
+			
+			if(parts.isEmpty()) {
+				m.addAttribute("message", "Nema delova za ovaj auto!");
+				
+				return "error";
+			}
 	
 			m.addAttribute("make", make);
 			m.addAttribute("model", model);
@@ -32,7 +38,7 @@ public class PartController {
 			
 			return "parts";
 		} catch(Exception ex) {
-			m.addAttribute("message", "Nema delova za ovaj auto!");
+			m.addAttribute("message", "Servis za delove trenutno nije dostupan. Pokusaj ponovo kasnije.");
 			
 			return "error";
 		}
