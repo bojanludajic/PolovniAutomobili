@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.dto.CarRequestDTO;
+import com.example.demo.dto.PartDTO;
 
 import model.Part;
 
@@ -24,7 +25,7 @@ public class PartService {
 	RestTemplate restTemplate;
 	
 	
-	public List<Part> getParts(String make, String model) {
+	public List<PartDTO> getParts(String make, String model) {
 		String url = "http://localhost:8081/Parts/partsForModel?make=" + make + "&model=" + model;
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -33,15 +34,14 @@ public class PartService {
 		
 		HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(headers);
 		
-		ResponseEntity<List<Part>> response = restTemplate.exchange(
+		ResponseEntity<List<PartDTO>> response = restTemplate.exchange(
 				url,
 				HttpMethod.GET,
 				requestEntity,
-				new ParameterizedTypeReference<List<Part>>() {}
+				new ParameterizedTypeReference<List<PartDTO>>() {}
 		);
 		
 		return response.getBody();
-		
 	}
 	
 	public ResponseEntity<String> orderPart(String make, String model, String name) {

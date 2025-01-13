@@ -52,7 +52,6 @@ public class SearchController {
         @RequestParam(required = false) Integer powerMax,
         Model m
     ) {
-        System.out.println("a");
         List<Listing> listings = ls.searchListings(
             make, model, priceMin, priceMax, yearMin, yearMax, sizeMin, sizeMax, powerMin, powerMax
         );

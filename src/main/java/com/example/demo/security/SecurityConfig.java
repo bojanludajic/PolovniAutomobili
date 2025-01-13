@@ -29,7 +29,7 @@ public class SecurityConfig {
 						.requestMatchers("/user/**", "/personalListings.jsp", "/favoriteListings.jsp", "/parts/**").hasAnyRole("Admin", "User")
 						.requestMatchers("/admin/**", "/allMessages.jsp").hasRole("Admin")
 						.anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/login.jsp").permitAll()
+				.formLogin(form -> form.loginPage("/auth/login").permitAll()
 						.loginProcessingUrl("/login")
 						.defaultSuccessUrl("/", true)
 						.failureUrl("/login.jsp?error=true"))

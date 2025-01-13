@@ -18,6 +18,11 @@ public class AuthController {
 	
 	@Autowired
 	UserService us;
+	
+	@GetMapping("/login")
+	public String getLogin() {
+		return "login";
+	}
 
 	@PostMapping("/saveUser")
 	public String saveUser(@ModelAttribute("user") User u, Model m) {
