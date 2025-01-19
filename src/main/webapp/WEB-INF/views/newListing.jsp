@@ -11,15 +11,16 @@
 	href="<c:url value='/styles/index.css'/>">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/styles/newListing.css'/>">
-
+<link rel="icon" href="<c:url value='/icon/favicon.ico'/>"
+	type="image/x-icon">
 </head>
 <body>
 
 	<div class="top-bar">
-		<a href="${pageContext.request.contextPath}/">Pocetna</a>
-		<a href="/Polovni/user/myListings">Moji oglasi</a>
-		<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
-		<a href="${pageContext.request.contextPath}/logout">Log out</a>
+		<a href="${pageContext.request.contextPath}/">Pocetna</a> <a
+			href="/Polovni/user/myListings">Moji oglasi</a> <a
+			href="/Polovni/user/favListings">Sacuvani oglasi</a> <a
+			href="${pageContext.request.contextPath}/logout">Log out</a>
 	</div>
 
 	<div class="form-container">

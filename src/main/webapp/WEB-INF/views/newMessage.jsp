@@ -13,16 +13,16 @@
 	href="<c:url value='/styles/index.css'/>">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/styles/newMessage.css'/>">
-
+<link rel="icon" href="<c:url value='/icon/favicon.ico'/>"
+	type="image/x-icon">
 </head>
 <body>
 	<div class="top-bar">
-		<a href="/Polovni/">Pocetna</a>
-		<a href="/Polovni/search/">Pretraga</a>
-		<a href="/Polovni/user/myListings">Moji oglasi</a>
-		<a href="/Polovni/user/newListing">Postavi oglas</a>
-		<a href="/Polovni/user/favListings">Sacuvani oglasi</a>
-		<a href="${pageContext.request.contextPath}/logout">Log out</a>
+		<a href="/Polovni/">Pocetna</a> <a href="/Polovni/search/">Pretraga</a>
+		<a href="/Polovni/user/myListings">Moji oglasi</a> <a
+			href="/Polovni/user/newListing">Postavi oglas</a> <a
+			href="/Polovni/user/favListings">Sacuvani oglasi</a> <a
+			href="${pageContext.request.contextPath}/logout">Log out</a>
 	</div>
 
 
@@ -47,8 +47,7 @@
 				for="message">Poruka:</label><br>
 			<textarea id="message" name="text"
 				placeholder="Unesite tekst poruke..." required></textarea>
-			<br>
-			<br>
+			<br> <br>
 
 			<button type="submit">Posalji</button>
 		</form>

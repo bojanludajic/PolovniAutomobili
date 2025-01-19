@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/styles/index.css'/>">
 <link rel="stylesheet" href="<c:url value='/styles/auth.css'/>">
+<link rel="icon" href="<c:url value='/icon/favicon.ico'/>"
+	type="image/x-icon">
 
 
 </head>

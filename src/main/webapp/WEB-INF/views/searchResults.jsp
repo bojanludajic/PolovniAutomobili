@@ -13,6 +13,8 @@
 	href="<c:url value='/styles/index.css'/>">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/styles/personalListings.css'/>">
+<link rel="icon" href="<c:url value='/icon/favicon.ico'/>"
+	type="image/x-icon">
 </head>
 <body>
 	<div class="top-bar">
@@ -26,9 +28,9 @@
 			</sec:authorize>
 			<sec:authorize access="hasRole('Admin')">
 				<a href="/Polovni/admin/listingManagement">Upravljanje oglasima</a>
-					<a href="/Polovni/admin/allMessages">Upravljanje porukama</a>
-					<a href="/Polovni/admin/reports">Izvestaji</a>
-					<a href="${pageContext.request.contextPath}/logout">Log out</a>
+				<a href="/Polovni/admin/allMessages">Upravljanje porukama</a>
+				<a href="/Polovni/admin/reports">Izvestaji</a>
+				<a href="${pageContext.request.contextPath}/logout">Log out</a>
 			</sec:authorize>
 		</sec:authorize>
 		<sec:authorize access="!isAuthenticated">
@@ -55,7 +57,7 @@
 							<h2>${listing.name}</h2>
 							<p class="price">${listing.price}€</p>
 							<div class="listing-details">
-								<p>${listing.make}- ${listing.model} (${listing.year})</p>
+								<p>${listing.make}-${listing.model} (${listing.year})</p>
 								<p>Motor: ${listing.engineSize}ccm, ${listing.horsepower} ks</p>
 								<p>Kilometraza: ${listing.mileage} km</p>
 							</div>

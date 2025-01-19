@@ -9,7 +9,7 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>Polovni automobili</title>
-	<link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<c:url value='/icon/favicon.ico'/>" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/styles/index.css'/>">
 	</head>
 	<body>
