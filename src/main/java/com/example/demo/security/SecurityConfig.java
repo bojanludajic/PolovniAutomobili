@@ -24,12 +24,12 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
-				.authorizeHttpRequests(requests -> requests
-						.requestMatchers("/*", "/styles/**", "/register.jsp", "/auth/**", "/search/**", "/listing/**").permitAll()
+				.authorizeHttpRequests(requests -> requests						.requestMatchers("/*", "/styles/**", "/register.jsp", "/auth/**", "/search/**", "/listing/**", "/WEB-INF/**").permitAll()
 						.requestMatchers("/user/**", "/personalListings.jsp", "/favoriteListings.jsp", "/parts/**").hasAnyRole("Admin", "User")
-						.requestMatchers("/admin/**", "/allMessages.jsp").hasRole("Admin")
+						.requestMatchers("/admin/**", "/allMessages.jsp", "/actuator/**").hasRole("Admin")
 						.anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/auth/login").permitAll()
+				.formLogin(form -> form
+						.loginPage("/").permitAll()
 						.loginProcessingUrl("/login")
 						.defaultSuccessUrl("/", true)
 						.failureUrl("/login.jsp?error=true"))

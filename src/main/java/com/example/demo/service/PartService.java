@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,9 +17,8 @@ import org.springframework.web.client.RestTemplate;
 import com.example.demo.dto.CarRequestDTO;
 import com.example.demo.dto.PartDTO;
 
-import model.Part;
-
 @Service
+@Lazy
 public class PartService {
 	
 	@Autowired
@@ -45,7 +45,7 @@ public class PartService {
 	}
 	
 	public ResponseEntity<String> orderPart(String make, String model, String name) {
-		String url ="http://localhost:8081/Parts/order";
+		String url = "http://localhost:8081/Parts/order";
 		
 		CarRequestDTO dto = new CarRequestDTO(make, model, name);
 		
