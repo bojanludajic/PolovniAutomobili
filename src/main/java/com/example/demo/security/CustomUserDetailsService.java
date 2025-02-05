@@ -13,9 +13,12 @@ import model.User;
 @Service("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
-	@Autowired
-	UserRepository ur;
-	
+	final UserRepository ur;
+
+	public CustomUserDetailsService(UserRepository ur) {
+		this.ur = ur;
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User u = ur.findByUsername(username);

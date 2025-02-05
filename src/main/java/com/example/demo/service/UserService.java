@@ -15,15 +15,18 @@ import model.User;
 @Service
 public class UserService {
 
-	@Autowired
-	UserRepository ur;
+	final UserRepository ur;
 	
-	@Autowired
-	RoleRepository rr;
+	final RoleRepository rr;
 	
-	@Autowired
-	PasswordEncoder passwordEncoder;
-	
+	final PasswordEncoder passwordEncoder;
+
+	public UserService(UserRepository ur, RoleRepository rr, PasswordEncoder passwordEncoder) {
+		this.ur = ur;
+		this.rr = rr;
+		this.passwordEncoder = passwordEncoder;
+	}
+
 	public List<User> getUsers() {
 		return ur.findAll();
 	}

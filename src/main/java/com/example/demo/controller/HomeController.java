@@ -1,10 +1,8 @@
 package com.example.demo.controller;
 
-import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,22 +13,24 @@ import com.example.demo.service.RateLimitService;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
-import model.User;
 import model.Listing;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
 
-	@Autowired
-	ListingService ls;
+	final ListingService ls;
 	
-	@Autowired
-	RateLimitService rateLimitService;
+	final RateLimitService rateLimitService;
 	
-	@Autowired
-	UserService us;
-	
+	final UserService us;
+
+	public HomeController(ListingService ls, RateLimitService rateLimitService, UserService us) {
+		this.ls = ls;
+		this.rateLimitService = rateLimitService;
+		this.us = us;
+	}
+
 	@GetMapping("/")
     public String getHomePage(Model m, HttpServletRequest request) {
 		String sessionId = request.getSession().getId();

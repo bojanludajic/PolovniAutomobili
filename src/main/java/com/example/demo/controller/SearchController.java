@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +18,15 @@ import model.Listing;
 @RequestMapping("/search")
 public class SearchController {
 
-	@Autowired
-	CarService cs;
+	final CarService cs;
 	
-	@Autowired
-	ListingService ls;
-	
+	final ListingService ls;
+
+	public SearchController(CarService cs, ListingService ls) {
+		this.cs = cs;
+		this.ls = ls;
+	}
+
 	@GetMapping("/")
 	public String getSearchPage(Model m, @RequestParam(value = "make", required = false) String make) {
 		m.addAttribute("makes", cs.getMakes());

@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.MessageRepository;
@@ -16,8 +15,11 @@ import model.Message;
 @Service
 public class MessageService {
 	
-	@Autowired
-	MessageRepository mr;
+	final MessageRepository mr;
+
+	public MessageService(MessageRepository mr) {
+		this.mr = mr;
+	}
 
 	public void newMessage(Integer idSender, Integer idReceiver, String text) {
 		Message m = new Message();

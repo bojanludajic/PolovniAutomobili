@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import java.time.Duration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -12,8 +11,7 @@ import org.springframework.util.StringUtils;
 public class RateLimitService {
 	
 	
-	@Autowired
-	private StringRedisTemplate redisTemplate;
+	private final StringRedisTemplate redisTemplate;
 	
 	@Value("${rate.limit.max.requests:50}")
 	private int homeMaxRequests;
@@ -26,7 +24,11 @@ public class RateLimitService {
 	
 	@Value("${rate.limit.window.seconds:60}")
 	private int windowInSeconds;
-	
+
+	public RateLimitService(StringRedisTemplate redisTemplate) {
+		this.redisTemplate = redisTemplate;
+	}
+
 	public boolean isRateLimited(String key, String feature) {
 		int maxRequests = getRequestsForFeature(feature);
 		String redisKey = "rate.limit:" + key;
@@ -47,16 +49,12 @@ public class RateLimitService {
 	}
 	
 	private int getRequestsForFeature(String feature) {
-		switch(feature) {
-			case "home":
-				return homeMaxRequests;
-			case "message":
-				return messageMaxRequests;
-			case "newListing":
-				return newListingMaxRequests;
-			default:
-				return 10;
-		}
+        return switch (feature) {
+            case "home" -> homeMaxRequests;
+            case "message" -> messageMaxRequests;
+            case "newListing" -> newListingMaxRequests;
+            default -> 10;
+        };
 	}
 
 }

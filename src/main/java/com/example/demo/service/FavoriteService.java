@@ -17,15 +17,18 @@ import model.User;
 @Service
 public class FavoriteService {
 	
-	@Autowired
-	FavoriteRepository fr;
+	final FavoriteRepository fr;
 	
-	@Autowired
-	UserRepository ur;
+	final UserRepository ur;
 	
-	@Autowired
-	ListingRepository lr;
-	
+	final ListingRepository lr;
+
+	public FavoriteService(FavoriteRepository fr, UserRepository ur, ListingRepository lr) {
+		this.fr = fr;
+		this.ur = ur;
+		this.lr = lr;
+	}
+
 	public List<Listing> favoritesForUser(Integer idUser) {
 		return fr.favoritesForUser(idUser);
 	}

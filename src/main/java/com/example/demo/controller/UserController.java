@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,26 +28,32 @@ import model.User;
 @RequestMapping("/user")
 public class UserController {
 
-	@Autowired
-	UserService us;
+	final UserService us;
 
-	@Autowired
-	CarService cs;
+	final CarService cs;
 
-	@Autowired
-	ListingService ls;
+	final ListingService ls;
 
-	@Autowired
-	FavoriteService fs;
+	final FavoriteService fs;
 
-	@Autowired
-	MessageService ms;
-	
-	@Autowired
-	RateLimitService rateLimitService;
-	
-	@Autowired
-	ImageService is;
+	final MessageService ms;
+
+	final RateLimitService rateLimitService;
+
+	final ImageService is;
+
+	public UserController(UserService us, CarService cs, ListingService ls,
+						  FavoriteService fs, MessageService ms, RateLimitService rls,
+						  ImageService is) {
+
+		this.us = us;
+		this.cs = cs;
+		this.ls = ls;
+		this.fs = fs;
+		this.ms = ms;
+		this.rateLimitService = rls;
+		this.is = is;
+	}
 
 	@GetMapping("/newListing")
 	public String newListing(Model m, @RequestParam(value = "make", required = false) String make,
@@ -72,7 +77,7 @@ public class UserController {
 
 	@PostMapping("/saveListing")
 	public String saveListing(@ModelAttribute("listing") Listing listing, Principal p,
-			@RequestParam("uploadImage") MultipartFile file, Model m) {
+			@RequestParam("uploadImage") MultipartFile file) {
 		if (p != null) {
 			try {
 				User u = us.findByUsername(p.getName());

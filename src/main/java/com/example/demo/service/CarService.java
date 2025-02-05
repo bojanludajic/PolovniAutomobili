@@ -12,9 +12,13 @@ import model.Car;
 @Service
 public class CarService {
 
-	@Autowired
+	final
 	CarRepository cr;
-	
+
+	public CarService(CarRepository cr) {
+		this.cr = cr;
+	}
+
 	public List<Car> getCars() {
 		return cr.findAll();
 	}

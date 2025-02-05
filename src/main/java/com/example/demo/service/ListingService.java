@@ -2,8 +2,6 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.ListingRepository;
@@ -15,11 +13,14 @@ import model.Listing;
 @Service
 public class ListingService {
 
-	@Autowired
-	ListingRepository lr;
+	final ListingRepository lr;
 	
 	@PersistenceContext
     private EntityManager entityManager;
+
+	public ListingService(ListingRepository lr) {
+		this.lr = lr;
+	}
 
 	public void saveListing(Listing listing) {
 		try {

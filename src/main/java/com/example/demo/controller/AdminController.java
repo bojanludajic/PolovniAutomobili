@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,15 +30,18 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	@Autowired
-	UserService us;
+	final UserService us;
 	
-	@Autowired
-	ListingService ls;
+	final ListingService ls;
 	
-	@Autowired
-	MessageService ms;
-	
+	final MessageService ms;
+
+	public AdminController(UserService us, ListingService ls, MessageService ms) {
+		this.us = us;
+		this.ls = ls;
+		this.ms = ms;
+	}
+
 	@GetMapping("/listingManagement")
 	public String manageListings(Model m) {
 		List<Listing> allListings = ls.findAll();
@@ -95,7 +97,7 @@ public class AdminController {
 		Map<String, Object> params = new HashMap<>();
 		params.put("Name", us.getName(idUser));
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
-		inputStream.close();
+        inputStream.close();
 		
 		response.setContentType("application/x-download");
 		response.addHeader("Content-disposition", "attachment; filename=OglasiKorisnika.pdf");

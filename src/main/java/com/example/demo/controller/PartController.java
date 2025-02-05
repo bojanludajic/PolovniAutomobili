@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +18,13 @@ import com.example.demo.service.PartService;
 @RequestMapping("/parts")
 public class PartController {
 	
-	@Autowired
 	@Lazy
-	PartService ps;
-	
+	final PartService ps;
+
+	public PartController(PartService ps) {
+		this.ps = ps;
+	}
+
 	@GetMapping("/partsForModel")
 	public String getParts(@RequestParam String make, @RequestParam String model, Model m) {
 		try {

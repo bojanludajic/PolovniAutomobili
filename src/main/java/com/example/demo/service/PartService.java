@@ -21,17 +21,19 @@ import com.example.demo.dto.PartDTO;
 @Lazy
 public class PartService {
 	
-	@Autowired
-	RestTemplate restTemplate;
-	
-	
+	final RestTemplate restTemplate;
+
+	public PartService(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
+
 	public List<PartDTO> getParts(String make, String model) {
 		String url = "http://localhost:8081/Parts/partsForModel?make=" + make + "&model=" + model;
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		
-		
+
 		HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(headers);
 		
 		ResponseEntity<List<PartDTO>> response = restTemplate.exchange(

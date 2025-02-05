@@ -17,10 +17,12 @@ import org.springframework.security.web.firewall.StrictHttpFirewall;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Autowired
-	@Qualifier("userDetailsService")
-	UserDetailsService uds;
-	
+	final UserDetailsService uds;
+
+	public SecurityConfig(@Qualifier("userDetailsService") UserDetailsService uds) {
+		this.uds = uds;
+	}
+
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
