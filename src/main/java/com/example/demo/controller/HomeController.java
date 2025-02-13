@@ -33,8 +33,7 @@ public class HomeController {
 
 	@GetMapping("/")
     public String getHomePage(Model m, HttpServletRequest request) {
-		String sessionId = request.getSession().getId();
-		if(rateLimitService.isRateLimited(sessionId, "home")) {
+		if(rateLimitService.isRateLimited(request, "home")) {
 			m.addAttribute("message", "Prekoracili ste maksimalan broj zahteva! Molim sacekajte.");
 			return "error";
 		}

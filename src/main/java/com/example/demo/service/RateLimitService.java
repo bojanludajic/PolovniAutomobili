@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.time.Duration;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -9,11 +10,10 @@ import org.springframework.util.StringUtils;
 
 @Service
 public class RateLimitService {
-	
-	
+
 	private final StringRedisTemplate redisTemplate;
 	
-	@Value("${rate.limit.max.requests:50}")
+	@Value("${rate.limit.max.requests:30}")
 	private int homeMaxRequests;
 	
 	@Value("${rate.limit.max.requests:10}")
@@ -33,7 +33,7 @@ public class RateLimitService {
 		int maxRequests = getRequestsForFeature(feature);
 		String redisKey = "rate.limit:" + key;
 		String currentRequests = redisTemplate.opsForValue().get(redisKey);
-		
+
 		if(StringUtils.isEmpty(currentRequests)) {
 			redisTemplate.opsForValue().set(redisKey, "1", Duration.ofSeconds(windowInSeconds));
 			return false;
@@ -47,7 +47,13 @@ public class RateLimitService {
 			return false;
 		}
 	}
-	
+
+	public boolean isRateLimited(HttpServletRequest request, String feature) {
+		String clientIp = request.getRemoteAddr();
+		return isRateLimited(clientIp, feature);
+	}
+
+
 	private int getRequestsForFeature(String feature) {
         return switch (feature) {
             case "home" -> homeMaxRequests;
