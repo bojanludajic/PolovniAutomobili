@@ -34,7 +34,7 @@
 			</sec:authorize>
 		</sec:authorize>
 		<sec:authorize access="!isAuthenticated">
-			<a href="/Polovni/login.jsp">Log in</a>
+			<a href="/Polovni/auth/login">Log in</a>
 		</sec:authorize>
 	</div>
 
