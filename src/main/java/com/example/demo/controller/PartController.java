@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import com.example.demo.exception.NoPartsAvailableException;
+import com.example.demo.exception.ServiceNotAvailableException;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,12 +31,6 @@ public class PartController {
 	public String getParts(@RequestParam String make, @RequestParam String model, Model m) {
 		try {
 			List<PartDTO> parts = ps.getParts(make, model);
-			
-			if(parts.isEmpty()) {
-				m.addAttribute("message", "Nema delova za ovaj auto!");
-				
-				return "error";
-			}
 	
 			m.addAttribute("make", make);
 			m.addAttribute("model", model);
@@ -42,13 +38,9 @@ public class PartController {
 			
 			return "parts";
 		} catch(HttpClientErrorException.NotFound ex) {
-			m.addAttribute("message", "Za ovaj model trenutno nema delova!");
-			
-			return "error";
+			throw new NoPartsAvailableException();
 		} catch(Exception ex) {
-			m.addAttribute("message", "Servis za delove trenutno nije dostupan. Pokusaj ponovo kasnije.");
-			
-			return "error";
+			throw new ServiceNotAvailableException("delove");
 		}
 	}
 	
@@ -56,7 +48,7 @@ public class PartController {
 	public String orderPart(@RequestParam String make, @RequestParam String model, @RequestParam String name, RedirectAttributes redirectAttributes, Model m) {
 		try {
 			ps.orderPart(make, model, name);
-		} catch(Exception ex) {
+		} catch(HttpClientErrorException.BadRequest ex) {
 			m.addAttribute("message", "Ovaj deo trenutno nije dostupan!");
 			return "error";
 		}

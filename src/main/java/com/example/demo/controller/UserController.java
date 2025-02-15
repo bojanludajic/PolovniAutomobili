@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.exception.TooManyRequestsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,8 +61,8 @@ public class UserController {
 			Principal p) {
 		if(p != null) {
 			if(rateLimitService.isRateLimited(p.getName(), "newListing")) {
-				m.addAttribute("message", "Prekoracili ste maksimalan broj zahteva! Molim sacekajte.");
-				return "error";
+				throw new TooManyRequestsException();
+
 			}
 		}
 		m.addAttribute("makes", cs.getMakes());
@@ -90,7 +91,6 @@ public class UserController {
 
 				ls.saveListing(listing);
 			} catch (Exception ex) {
-				ex.printStackTrace();
 				return "error";
 			}
 		}
@@ -171,8 +171,8 @@ public class UserController {
 	public String newMessage(Principal p, @RequestParam("idListing") Integer id, Model m) {
 		if (p != null) {
 			if(rateLimitService.isRateLimited(p.getName(), "message")) {
-				m.addAttribute("message", "Prekoracili ste maksimalan broj zahteva! Molim sacekajte.");
-				return "error";
+				throw new TooManyRequestsException();
+
 			}
 			User u = us.findByUsername(p.getName());
 			Listing l = ls.findyById(id);

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.Collections;
 import java.util.List;
 
+import com.example.demo.exception.TooManyRequestsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,8 +35,7 @@ public class HomeController {
 	@GetMapping("/")
     public String getHomePage(Model m, HttpServletRequest request) {
 		if(rateLimitService.isRateLimited(request, "home")) {
-			m.addAttribute("message", "Prekoracili ste maksimalan broj zahteva! Molim sacekajte.");
-			return "error";
+			throw new TooManyRequestsException();
 		}
 		
 		List<Listing> listings = ls.findAll();
