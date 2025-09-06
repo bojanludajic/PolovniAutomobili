@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.service.UserService;
 
 import model.User;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/auth")
@@ -38,4 +39,10 @@ public class AuthController {
 		return "login";
 	}
 
+	@GetMapping("/login-error")
+	public String loginErorr(RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("badCredentials", true);
+
+		return "redirect:/auth/login";
+	}
 }

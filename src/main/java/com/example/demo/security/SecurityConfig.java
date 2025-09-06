@@ -34,7 +34,7 @@ public class SecurityConfig {
 						.loginPage("/").permitAll()
 						.loginProcessingUrl("/login")
 						.defaultSuccessUrl("/", true)
-						.failureUrl("/login.jsp?error=true"))
+						.failureUrl("/auth/login-error"))
 				.logout(logout -> logout
 						.logoutSuccessUrl("/"))
 				.csrf(csrf -> csrf.disable())

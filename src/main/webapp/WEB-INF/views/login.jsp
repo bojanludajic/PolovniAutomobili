@@ -29,6 +29,9 @@
 				name="password" required> <br>
 			<button type="submit">Log in</button>
 		</form>
+		<c:if test="${badCredentials}">
+			<p style="color:red">Neispravno korisnicko ime/lozinka!</p>
+		</c:if>
 		Nemas nalog? <a href="/Polovni/register.jsp">Registruj se!</a>
 		<c:if test="${!empty message}">
 			<p class="c-message">${message}</p>
